@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "Local Kubernetes Cluster With KIND"
+title:  "Local Kubernetes Setup With KIND"
 date:   2020-10-18 18:15:08 -0400
 categories: kubernetes
 ---
 
 - [Prerequisite](#prerequisite)
-- [Create Local Kubernetes Cluster](#create-local-kubernetes-cluster)
-- [Verify Cluster Installation](#verify-cluster-installation)
-- [Delete Local Kubernete Cluster](#delete-local-kubernetes-cluster)
+- [Create Local Kubernetes](#create-local-kubernetes)
+- [Verify Installation](#verify-installation)
+- [Delete Local Kubernete](#delete-local-kubernetes)
 
 ## Prerequisite
 * kubectl: <https://kubernetes.io/docs/tasks/tools/install-kubectl/>
@@ -51,10 +51,10 @@ sudo mv ./kind /usr/local/bin/kind
 ```
 
 
-## Create Local Kubernetes Cluster
+## Create Local Kubernetes
 
 Following `kind` [user guide](https://kind.sigs.k8s.io/docs/user/quick-start/), to creat the cluster with:
-1. local docker registry
+1. local docker registry support
 2. ingress support
 3. host to node port mapping
 
@@ -128,7 +128,7 @@ kubectl wait --namespace ingress-nginx \
 ```
 
 
-## Verify Cluster Installation
+## Verify Installation
 
 Deploy example app:
 
@@ -157,7 +157,7 @@ kubectl delete -f https://kind.sigs.k8s.io/examples/ingress/usage.yaml
 ```
 
 
-## Delete Local Kubernetes Cluster
+## Delete Local Kubernetes
 ```bash
 kind delete cluster
 ```
