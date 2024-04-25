@@ -1,0 +1,43 @@
+<table>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <app-input-autocomplete
+              [label]='"Algorithm"'
+              [values]="algorithmNames()"
+              [(selectedValue)]="selectedAlgorithm" >
+            </app-input-autocomplete>
+          </td>
+          <td>
+            <button mat-raised-button [disabled]='selectedAlgorithm() === ""' (click)="solve()">Run</button>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+    @if (result().solution) {
+      <table class="search-result">
+        <tr>
+          <th>Algorithm</th>
+          <th>Steps</th>
+          <th>Cost</th>
+          <th>Solution Size</th>
+        </tr>
+        <tr>
+          <td>{{ result().name }}</td>
+          <td>{{ result().steps.length }}</td>
+          <td>{{ result().solution?.cost }}</td>
+          <td>{{ solutionSize(result().solution) }}</td>
+        </tr>
+      </table>
+    }
+    </td>
+  </tr>
+</table>
+
+@if(solving()) {
+  <mat-progress-bar *ngIf="solving()" mode="indeterminate"></mat-progress-bar>
+}
+<app-discrete-problem [solutionSteps]="result().steps"></app-discrete-problem>
