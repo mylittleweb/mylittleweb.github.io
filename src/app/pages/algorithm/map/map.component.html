@@ -1,0 +1,46 @@
+<form class="config-panel" [formGroup]="mapConfigForm" (keydown.enter)="$event.preventDefault()" (submit)="$event.preventDefault()">
+  <table>
+    <tr>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Columns</mat-label>
+          <input matInput type="number" formControlName="columns" />
+          @if (mapConfigForm.get("columns")?.hasError("required")) {
+            <mat-error>Invalid Column</mat-error>
+          }
+        </mat-form-field></td>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Rows</mat-label>
+          <input matInput type="number" formControlName="rows" />
+          @if (mapConfigForm.get("rows")?.hasError("required")) {
+            <mat-error>Invalid Row</mat-error>
+          }
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Weight Distribution</mat-label>
+          <mat-select formControlName="weightDistribution">
+            @for (distribution of weightDistributionAlgorithm(); track distribution) {
+              <mat-option [value]="distribution">{{ distribution }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <button mat-raised-button (click)="newProblem()" [disabled]="mapConfigForm.invalid">Generate</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<table>
+  @for (row of [].constructor(map().length); let y = $index; track y) {
+    <tr>
+      @for (column of [].constructor(map()[0].length); let x = $index; track x) {
+        <td class="problem-cell" [style]="cellStyle(map()[y][x])"></td>
+      }
+    </tr>
+  }
+</table>

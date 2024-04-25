@@ -1,0 +1,43 @@
+<form class="config-panel" [formGroup]="mazeConfigForm" (keydown.enter)="$event.preventDefault()" (submit)="$event.preventDefault()">
+  <table>
+    <tr>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Columns</mat-label>
+          <input matInput type="number" formControlName="columns" />
+        </mat-form-field></td>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Rows</mat-label>
+          <input matInput type="number" formControlName="rows" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Distribution</mat-label>
+          <mat-select [required]="true" formControlName="generator">
+            @for (g of generatorName(); track g) {
+              <mat-option [value]="g">{{ g }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <button mat-raised-button [disabled]="mazeConfigForm.invalid" (click)="generate()">Generate</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+@if(generating()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<table class="maze">
+  @for (row of [].constructor(grid().length); let y = $index; track y) {
+    <tr>
+      @for (column of [].constructor(grid()[0].length); let x = $index; track x) {
+        <td [ngClass]="cellStyle(grid()[y][x])"></td>
+      }
+    </tr>
+  }
+</table>

@@ -1,0 +1,46 @@
+<table>
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Algorithm</mat-label>
+              <mat-select [required]="true" [(value)]="selectedAlgorithm">
+                @for (algoName of algorithmNames(); track algoName) {
+                  <mat-option [value]="algoName">{{ algoName }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-raised-button [disabled]='selectedAlgorithm() === "" || problem() === undefined' (click)="solve()">Run</button>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+    @if (result().solution) {
+      <table class="search-result">
+        <tr>
+          <th>Algorithm</th>
+          <th>Expanded</th>
+          <th>Pending</th>
+          <th>Cost</th>
+        </tr>
+        <tr>
+          <td>{{ result().name }}</td>
+          <td>{{ result().expanded }}</td>
+          <td>{{ result().pending }}</td>
+          <td>{{ result().solution?.cost }}</td>
+        </tr>
+      </table>
+    }
+    </td>
+  </tr>
+</table>
+
+@if(solving()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<app-map [grids]="result().steps"></app-map>
