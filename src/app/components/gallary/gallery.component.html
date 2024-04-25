@@ -1,0 +1,31 @@
+<script src="gallery.component.ts"></script>
+<mat-toolbar>
+  <form (keydown.enter)="$event.preventDefault()">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput type="text" [formControl]="filter" />
+    </mat-form-field>
+  </form>
+</mat-toolbar>
+
+<div #galleryContainer>
+  <mat-grid-list [cols]="gridCols()" rowHeight="100px" gutterSize="16px">
+    @for (item of filteredItems(); track item.label) {
+      <mat-grid-tile [colspan]="item.columnSpan" [rowspan]=item.rowSpan>
+        @if (item.route) {
+          <a [routerLink]="item.route">
+            <mat-card>
+                <mat-card-content>{{ item.label }}</mat-card-content>
+            </mat-card>
+          </a>
+        } @else {
+          <mat-card>
+            <mat-card-content>{{ item.label }}</mat-card-content>
+          </mat-card>
+        }
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>
+
+

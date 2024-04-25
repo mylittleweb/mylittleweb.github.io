@@ -1,0 +1,9 @@
+<table>
+  @for (row of [].constructor(nodesState().length); let y = $index; track y) {
+    <tr>
+      @for (column of [].constructor(nodesState()[0].length); let x = $index; track x) {
+        <td class="problem-cell" [ngClass]="cellClass(x, y)"></td>
+      }
+    </tr>
+  }
+</table>
