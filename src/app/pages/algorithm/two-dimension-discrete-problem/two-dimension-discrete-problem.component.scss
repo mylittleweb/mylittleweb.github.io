@@ -1,0 +1,33 @@
+table {
+  border-spacing: 1px;
+}
+
+td.problem-cell {
+  height: 5px;
+  width: 5px;
+  border: 1px solid black;
+}
+
+td.problem-cell.init {
+  background-color: red;
+}
+
+td.problem-cell.solution {
+  background-color: yellow;
+}
+
+td.problem-cell.goal {
+  background-color: green;
+}
+
+td.problem-cell.visited {
+  background-color: lightgrey;
+}
+
+td.problem-cell.pending {
+  background-color: deepskyblue;
+}
+
+td.problem-cell.blocked {
+  background-color: black;
+}
