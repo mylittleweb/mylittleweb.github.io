@@ -1,0 +1,14 @@
+table {
+  border-spacing: 1px;
+}
+
+td.problem-cell {
+  height: 4px;
+  width: 4px;
+}
+
+
+td.problem-cell.pending {
+  background-color: deepskyblue;
+}
+

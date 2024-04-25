@@ -1,0 +1,8 @@
+<form [formGroup]="form.group() " (keydown.enter)="$event.preventDefault()" (submit)="$event.preventDefault()">
+@for (field of form.fields(); track field.name) {
+  <app-form-field [field]="field"></app-form-field>
+}
+</form>
+
+
+<pre>{{ form.valueChanges() | async | json }}</pre>

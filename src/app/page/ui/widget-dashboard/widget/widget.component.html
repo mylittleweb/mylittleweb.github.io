@@ -1,0 +1,20 @@
+<div class="container"
+     cdkDrag
+     cdkDragPreviewContainer="parent"
+>
+  <mat-toolbar>
+    <span>{{ data().label }}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="store.removeWidget(data().id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card>
+    <mat-card-content>
+      <ng-container [ngComponentOutlet]="data().content"/>
+    </mat-card-content>
+  </mat-card>
+
+  <div *cdkDragPlaceholder></div>
+</div>

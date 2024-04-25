@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <app-form-field-text [field]="field"></app-form-field-text>
+</mat-toolbar>
+
+<div #galleryContainer>
+  <mat-grid-list [cols]="gridCols()" rowHeight="100px" gutterSize="16px">
+    @for (item of filteredItems(); track item.label) {
+      <mat-grid-tile [colspan]="item.columnSpan" [rowspan]=item.rowSpan>
+        @if (item.route) {
+          <a class="container" [routerLink]="item.route">
+            {{ item.label }}
+          </a>
+        } @else {
+          {{ item.label }}
+        }
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>
+
+

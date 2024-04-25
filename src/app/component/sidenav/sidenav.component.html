@@ -1,0 +1,22 @@
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidNavWidth()">
+    <mat-toolbar>
+      <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      @for (item of menuItems(); track item.label) {
+        <a mat-list-item [routerLink]="item.route" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          @if (!collapsed()) {
+            <span matListItemTitle>{{ item.label }}</span>
+          }
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="sidNavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

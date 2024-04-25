@@ -1,0 +1,6 @@
+<form (keydown.enter)="$event.preventDefault()" (submit)="$event.preventDefault()">
+  <mat-form-field appearance="outline">
+    <mat-label>Probability</mat-label>
+    <input matInput type="number" min="0" max="1" [formControl]="probability" />
+  </mat-form-field>
+</form>

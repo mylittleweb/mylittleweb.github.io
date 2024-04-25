@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ field().label }}</mat-label>
+  <mat-select [required]="true" [formControl]="field().formControl">
+    @for (option of field().options | async ; track option.label) {
+      <mat-option [value]="option.value">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

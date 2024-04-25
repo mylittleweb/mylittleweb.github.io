@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <td>
+      <form (submit)="$event.preventDefault()">
+        <app-form-field-select [field]="selectedAlgo"></app-form-field-select>
+        <button mat-raised-button [disabled]="selectedAlgo.formControl.invalid || map() === undefined" (click)="run()">Run</button>
+      </form>
+    </td>
+    <td>
+    @if (result().solution) {
+      <table class="search-result">
+        <tr>
+          <th>Algorithm</th>
+          <th>Expanded</th>
+          <th>Pending</th>
+          <th>Cost</th>
+        </tr>
+        <tr>
+          <td>{{ result().name }}</td>
+          <td>{{ result().expanded }}</td>
+          <td>{{ result().pending }}</td>
+          <td>{{ result().solution?.cost }}</td>
+        </tr>
+      </table>
+    }
+    </td>
+  </tr>
+</table>
+
+@if(solving()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<app-map [grids]="result().steps" [numDestinations]="2" (generatedMap)="onNewMap($event)"></app-map>

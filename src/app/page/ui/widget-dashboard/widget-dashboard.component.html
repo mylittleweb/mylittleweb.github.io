@@ -1,0 +1,30 @@
+<div class="header">
+  <mat-toolbar>
+    <button mat-raised-button [matMenuTriggerFor]="widgetMenu">
+      <mat-icon>add_circle</mat-icon>
+      <span>Add Widget</span>
+    </button>
+  </mat-toolbar>
+  <mat-menu #widgetMenu="matMenu">
+    @for (widget of store.widgetsToAdd(); track widget.id) {
+      <button mat-menu-item (click)="store.addWidget(widget)">
+        {{ widget.label }}
+      </button>
+    } @empty {
+      <button mat-menu-item>Nothing To Add</button>
+    }
+  </mat-menu>
+</div>
+<div #widgetDashboard cdkDropListGroup>
+  <mat-grid-list [cols]="gridCols()" rowHeight="200px" gutterSize="16px">
+    @for (w of store.addedWidgets(); track w.id) {
+      <mat-grid-tile
+        [colspan]="w.columnSpan" [rowspan]="w.rowSpan"
+        cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="w.id">
+        <app-widget class="container"  [data]="w" />
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+
+</div>
+

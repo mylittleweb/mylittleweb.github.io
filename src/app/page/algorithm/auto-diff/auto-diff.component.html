@@ -1,0 +1,16 @@
+<form (submit)="$event.preventDefault()">
+  @for (field of form.fields(); track field.name) {
+    <app-form-field [field]="field"></app-form-field>
+  }
+  <button mat-raised-button [disabled]="form.group().invalid" (click)="train()"><span>Run</span></button>
+</form>
+<div style="width: 100%; height: 90vh">
+  <div class="compute-graph-container"><app-graph [graphDef]="graphDef"></app-graph></div>
+  <div class="stats-container">
+    <app-line-chart [chartDef]="this.statCharts.w1"></app-line-chart>
+    <app-line-chart [chartDef]="this.statCharts.w2"></app-line-chart>
+    <app-line-chart [chartDef]="this.statCharts.bias"></app-line-chart>
+    <app-line-chart [chartDef]="this.statCharts['error = target - prediction']"></app-line-chart>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+mat-toolbar {
+  position:relative;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.config-panel {
+  padding-top: 1rem;
+}
+
+th, td{
+  text-align: left;
+}
+
+.search-result th,
+.search-result td {
+  padding-left: 1rem;
+}
