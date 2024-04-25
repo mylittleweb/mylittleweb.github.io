@@ -1,0 +1,17 @@
+<form [formGroup]="form.group()" (submit)="$event.preventDefault()">
+  @for (field of form.fields(); track field.name) {
+    <app-form-field [field]="field"></app-form-field>
+  }
+
+  <button mat-raised-button [disabled]="form.group().invalid" (click)="generate()">Generate</button>
+</form>
+
+<table>
+  @for (row of [].constructor(grid().length); let y = $index; track y) {
+    <tr>
+      @for (column of [].constructor(grid()[0].length); let x = $index; track x) {
+        <td class="problem-cell" [style]="cellStyle(grid()[y][x])"></td>
+      }
+    </tr>
+  }
+</table>
