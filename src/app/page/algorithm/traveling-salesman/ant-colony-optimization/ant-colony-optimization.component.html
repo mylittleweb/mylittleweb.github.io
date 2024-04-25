@@ -1,0 +1,5 @@
+<form style="display: inline" (submit)="$event.preventDefault()">
+  @for (field of confForm.fields(); track field.name) {
+    <app-form-field [field]="field"></app-form-field>
+  }
+</form>

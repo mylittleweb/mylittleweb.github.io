@@ -1,0 +1,52 @@
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>Distribution</mat-label>
+        <mat-select [required]="true" [(value)]="selectedAlgorithm">
+          @for (algoName of algorithmNames(); track algoName) {
+            <mat-option [value]="algoName">{{ algoName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </td>
+    @switch(selectedAlgorithm()) {
+      @case ("Uniform") {
+        <app-uniform-sample-config [(configuredAlgorithm)]="configuredAlgorithm"></app-uniform-sample-config>
+      }
+      @case ("Bernoulli") {
+        <app-bernoulli-sample-config [(configuredAlgorithm)]="configuredAlgorithm"></app-bernoulli-sample-config>
+      }
+      @case ("Normal") {
+        <app-normal-sample-config [(configuredAlgorithm)]="configuredAlgorithm"></app-normal-sample-config>
+      }
+      @case ("Exponential") {
+        <app-exponential-sample-config [(configuredAlgorithm)]="configuredAlgorithm"></app-exponential-sample-config>
+      }
+      @case ("Poisson") {
+        <app-poisson-sample-config [(configuredAlgorithm)]="configuredAlgorithm"></app-poisson-sample-config>
+      }
+      @default {
+      }
+    }
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>Samples</mat-label>
+        <input matInput type="number" [formControl]="totalSamples" />
+      </mat-form-field>
+    </td>
+    <td>
+      <button mat-raised-button
+              [disabled]="configuredAlgorithm() === undefined || totalSamples.invalid"
+              (click)="generate()">
+        Run
+      </button>
+    </td>
+  </tr>
+</table>
+
+<div class="chart-container">
+  <canvas #randomSampleCanvas></canvas>
+</div>
