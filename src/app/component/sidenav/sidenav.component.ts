@@ -1,5 +1,5 @@
 import {Component, computed, input, signal} from "@angular/core";
-import {CommonModule} from "@angular/common";
+
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
@@ -16,7 +16,7 @@ export type MenuItem = {
 
 @Component({
   selector: "app-sidenav",
-  imports: [CommonModule, MatListModule, MatIconModule, RouterModule, MatSidenavModule, MatIconButton, MatToolbar],
+  imports: [MatListModule, MatIconModule, RouterModule, MatSidenavModule, MatIconButton, MatToolbar],
   templateUrl: "./sidenav.component.html",
   styleUrl: "./sidenav.component.scss"
 })
